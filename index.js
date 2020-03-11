@@ -17,10 +17,12 @@ app.get('/users',function(req,res){
 })
 
 app.get('/user/:id',function(req,res){
-  let reqsql = 'SELECT * FROM user WHERE id='+req.params.id
-  connection.query(reqsql,function(err,result,fields){
-    res.json(result)
-  })
+  if(isNaN(req.params.id)){
+    let reqsql = 'SELECT * FROM user WHERE id='+req.params.id
+    connection.query(reqsql,function(err,result,fields){
+      res.json(result)
+    })
+  }
 })
 
 app.get('/', function (req, res) {
